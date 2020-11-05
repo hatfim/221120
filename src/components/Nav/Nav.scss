@@ -1,0 +1,33 @@
+@import "@sass/mixins";
+
+:local(.root) {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select:none;
+}
+
+:local(.link) {
+  position: absolute;
+  bottom: 2.66667vw;
+  left: 3.38889vw;
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+
+  li {
+    float: left;
+    overflow: hidden;
+    margin: 0 4.43478vh 0 0;
+  }
+
+  a {
+    @include rem-fallback('font-size', 12);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: n;
+  }
+}

@@ -1,0 +1,8 @@
+"settings": {
+  "parser": "babel-eslint",
+  "import/resolver": {
+    "alias": [
+      ["@components", "./src/components"]
+    ]
+  }
+}

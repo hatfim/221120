@@ -1,0 +1,93 @@
+// Typography
+
+body {
+  font-family: $font-family;
+  font-size: 1rem;
+  line-height: 1.4;
+  text-rendering: optimizeLegibility;
+  color: $color-text;
+}
+
+a {
+  color: $color-primary;
+}
+
+.text--regular {
+  font-size: 1rem;
+}
+
+// Headings
+.heading {
+  font-weight: 700;
+  letter-spacing: 0.125em;
+  text-rendering: optimizeLegibility;
+}
+
+
+  .heading--large {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .heading--medium {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+  }
+
+  .heading--small {
+      font-size: 1rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+  }
+
+  .heading--x-small {
+      font-size: .9rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+  }
+
+  .label,
+  .heading--xx-small {
+      font-size: .8rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+  }
+
+  .scroll-down {
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+
+    &:hover {
+      span {
+        height: 60px;
+      }
+    }
+
+    span {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      height: 42px;
+      width: 1px;
+      background: #f3e5b1;
+      display: block;
+      transition: height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    span::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 2px;
+      left: -50%;
+      margin: 0;
+      padding: 0;
+      width: 13px;
+      height: 13px;
+      border-top: 1px solid #f3e5b1;
+      border-right: 1px solid #f3e5b1;
+      transform: rotate(135deg);
+      margin-left: -5px;
+    }
+  }
