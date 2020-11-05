@@ -49,43 +49,48 @@ class Form extends React.Component {
               </label>
             </p>
             <div className="rsvp-name form-item">
-              <label className="form-item__label">Name(s):</label>
+              <label className="form-item__label">Your Name(s)</label>
               <div className="text-input__outer-wrapper">
                 <div className="text-input__wrapper">
                   <input type="text" name="name" className="text-input" onChange={this.handleChange} required />
-
                 </div>
               </div>
             </div>
-            <div className="rsvp-attendance">
-              <label>Attendance:
-                <div className="rsvp-attendance-options">
-                  <div className="rsvp-attendance-option_1">
-                    <input type="radio" name="RSVP Response" value="Yes" onChange={this.handleChange} required /> Definitely!
-                  </div>
-                  <div className="rsvp-attendance-option_2">
-                    <input type="radio" name="RSVP Response" value="No" onChange={this.handleChange} required /> Regretfully No
-                  </div>
+            <div className="rsvp-name form-item">
+              <label className="form-item__label">Email Address</label>
+              <div className="text-input__outer-wrapper">
+                <div className="text-input__wrapper">
+                  <input type="text" name="name" className="text-input" onChange={this.handleChange} required />
                 </div>
-              </label>
+              </div>
             </div>
-            <div className="rsvp-guests">
-                <label>Attendees:
-                    <input type="number" name="Total number of Guests" min="0" max="8" onChange={this.handleChange} required />
-                </label>
+            <div className="rsvp-attendance form-item">
+              <div className="radio-button-group">
+                <div className="radio-button__wrapper">
+                  <input id="radio-1" type="radio" name="RSVP Response" className="radio-button" value="Yes" onChange={this.handleChange} required /> Definitely!
+                  <label for="radio-1" className="radio-button__label">
+                    <span className="radio-button__appearance"></span>
+                    <span>JOYFULLY ACCEPT</span>
+                  </label>
+                </div>
+                <div className="radio-button__wrapper">
+                  <input id="radio-2" type="radio" name="RSVP Response" className="radio-button" value="No" onChange={this.handleChange} required /> Regretfully No
+                  <label for="radio-2" className="radio-button__label">
+                    <span className="radio-button__appearance"></span>
+                    <span>REGRETFULLY DECLINE</span>
+                  </label>
+                </div>
+              </div>
             </div>
-            <div className="rsvp-messagebox">
-              <label>
-                Message:<br />
-                <textarea name="message" rows="3" onChange={this.handleChange} />
-              </label>
+            <div className="rsvp-messagebox form-item">
+              <label className="form-item__label">Email Address</label>
+              <div className="text-input__outer-wrapper">
+                <div className="text-input__wrapper">
+                  <textarea name="message" rows="3" className="text-area" onChange={this.handleChange} />
+                </div>
+              </div>
             </div>
-            <div className="rsvp-songbox">
-              <label>
-                Song choices:<br />
-                <textarea name="Song choices" rows="2" onChange={this.handleChange} />
-              </label>
-            </div>
+
             <div className="rsvp-recaptcha" data-netlify-recaptcha></div>
             <div className="rsvp-submit">
               <button type="submit">Submit</button>
