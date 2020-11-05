@@ -4,6 +4,15 @@
   align-items: flex-start;
   justify-content: center;
   height: 100vh;
+  background-image: url(./hero.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+
+  @media (max-width: 960px) {
+    background-image: url(./hero-mobile.jpg);
+    background-position: bottom center;
+  }
 }
 
 :local(.logo) {

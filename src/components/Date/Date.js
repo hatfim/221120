@@ -14,9 +14,7 @@ const Date = () => (
         <div className="col">
           <div className="">
             <p className="label">The Date</p>
-            <h2 className="heading--large">SUNDAY<br />
-                NOVEMBER 22<br />
-                2020</h2>
+            <h2 className="heading--large">SUNDAY, NOVEMBER 22 2020</h2>
           </div>
           <div className={styles.rsvp}>
             <p className="label">The Invite</p>

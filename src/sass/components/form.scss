@@ -35,7 +35,7 @@
   height: 2.5rem;
   padding: 0 1rem;
   color: $color-primary;
-  background-color: #121212;
+  background-color: #0f0f0f;
   border: none;
   border-bottom: 1px solid $color-primary;
   transition: background-color 70ms cubic-bezier(.2,0,.38,.9),outline 70ms cubic-bezier(.2,0,.38,.9);
@@ -58,7 +58,7 @@
   min-height: 2.5rem;
   padding: .6875rem 1rem;
   color: $color-primary;
-  background-color: #121212;
+  background-color: #0f0f0f;
   border: none;
   border-bottom: 1px solid $color-primary;
   transition: background-color 70ms cubic-bezier(.2,0,.38,.9),outline 70ms cubic-bezier(.2,0,.38,.9);
@@ -148,4 +148,17 @@
   background-color: initial;
   border: 1px solid $color-primary;
   border-radius: 50%;
+}
+
+.rsvp-body {
+  max-width: 600px;
+  margin: 0 auto;
+
+  .form-item {
+    margin-bottom: 2rem;
+  }
+
+  .radio-button__wrapper {
+    margin-bottom: 1rem;
+  }
 }

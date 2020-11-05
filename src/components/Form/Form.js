@@ -1,7 +1,15 @@
-// https://script.google.com/macros/s/AKfycbzWeCF_KHlsOY3zX11G-6-sIFu2eFDV3sxuPTtrk_LB4w2qQwQ0/exec
-
 import React from "react";
-import styles from "./Form.scss"
+import { navigate } from "gatsby";
+import { Svg } from "@components";
+import styles from './Form.scss';
+
+import logo from "!!raw-loader!./logo.svg";
+
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
 
 class Form extends React.Component {
   constructor(props) {
@@ -24,13 +32,14 @@ class Form extends React.Component {
         ...this.state
       })
     })
-      .then(() => navigateTo(form.getAttribute("action")))
+      .then(() => navigate(form.getAttribute("action")))
       .catch(error => alert(error));
   };
 
   render() {
     return (
       <div className="wrapper rsvp-form">
+        <Svg className={styles.logo} svg={logo} />
         <div className="container rsvp-body">
           <form className="form-body"
             name="RSVP"
@@ -67,14 +76,14 @@ class Form extends React.Component {
             <div className="rsvp-attendance form-item">
               <div className="radio-button-group">
                 <div className="radio-button__wrapper">
-                  <input id="radio-1" type="radio" name="RSVP Response" className="radio-button" value="Yes" onChange={this.handleChange} required /> Definitely!
+                  <input id="radio-1" type="radio" name="RSVP Response" className="radio-button" value="Yes" onChange={this.handleChange} required />
                   <label for="radio-1" className="radio-button__label">
                     <span className="radio-button__appearance"></span>
                     <span>JOYFULLY ACCEPT</span>
                   </label>
                 </div>
                 <div className="radio-button__wrapper">
-                  <input id="radio-2" type="radio" name="RSVP Response" className="radio-button" value="No" onChange={this.handleChange} required /> Regretfully No
+                  <input id="radio-2" type="radio" name="RSVP Response" className="radio-button" value="No" onChange={this.handleChange} required />
                   <label for="radio-2" className="radio-button__label">
                     <span className="radio-button__appearance"></span>
                     <span>REGRETFULLY DECLINE</span>

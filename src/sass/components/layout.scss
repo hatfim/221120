@@ -14,7 +14,7 @@ html {
 
 html,
 body {
-  background-color: #000;
+  background-color: #080808;
 }
 
 body {
@@ -65,11 +65,19 @@ body {
   @supports (display: grid) {
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 960px) {
+      grid-template-columns: 1fr;
+    }
   }
 
 
   > .col {
     flex-basis: 50%;
+
+    @media (max-width: 960px) {
+      flex-basis: 100%;
+    }
   }
 }
 
