@@ -6,77 +6,92 @@ import styles from "./Form.scss"
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      values: {
-        email: "",
-        password: ""
-      },
-      isSubmitting: false,
-      isError: false
-    };
+    this.state = {};
   }
 
-  submitForm = async e => {
-    e.preventDefault();
-    console.log(this.state);
-    this.setState({ isSubmitting: true });
-
-    const res = await fetch("https://script.google.com/macros/s/AKfycbzWeCF_KHlsOY3zX11G-6-sIFu2eFDV3sxuPTtrk_LB4w2qQwQ0/exec", {
-      method: "POST",
-      body: JSON.stringify(this.state.values),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    console.log(res);
-    this.setState({ isSubmitting: false });
-    const data = await res.json();
-    !data.hasOwnProperty("error")
-      ? this.setState({ message: data.success })
-      : this.setState({ message: data.error, isError: true });
-
-    setTimeout(
-      () =>
-        this.setState({
-          isError: false,
-          message: "",
-          values: { email: "", password: "" }
-        }),
-      1600
-    );
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleInputChange = e =>
-    this.setState({
-      values: { ...this.state.values, [e.target.name]: e.target.value }
-    });
+  handleSubmit = e => {
+    e.preventDefault();
+    const form = e.target;
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": form.getAttribute("name"),
+        ...this.state
+      })
+    })
+      .then(() => navigateTo(form.getAttribute("action")))
+      .catch(error => alert(error));
+  };
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.submitForm}>
-          <div className="input-group">
-            <label htmlFor="email">E-mail Address</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={this.state.values.email}
-              onChange={this.handleInputChange}
-              title="Email"
-              required
-            />
+      <div className="wrapper rsvp-form">
+        <div className="container rsvp-body">
+          <form className="form-body"
+            name="RSVP"
+            method="post"
+            action="/thanks/"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            onSubmit={this.handleSubmit}
+          >
+            {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden>
+              <label>
+                Don’t fill this out:{" "}
+                <input name="bot-field" onChange={this.handleChange} />
+              </label>
+            </p>
+            <div className="rsvp-name form-item">
+              <label className="form-item__label">Name(s):</label>
+              <div className="text-input__outer-wrapper">
+                <div className="text-input__wrapper">
+                  <input type="text" name="name" className="text-input" onChange={this.handleChange} required />
+
+                </div>
+              </div>
+            </div>
+            <div className="rsvp-attendance">
+              <label>Attendance:
+                <div className="rsvp-attendance-options">
+                  <div className="rsvp-attendance-option_1">
+                    <input type="radio" name="RSVP Response" value="Yes" onChange={this.handleChange} required /> Definitely!
+                  </div>
+                  <div className="rsvp-attendance-option_2">
+                    <input type="radio" name="RSVP Response" value="No" onChange={this.handleChange} required /> Regretfully No
+                  </div>
+                </div>
+              </label>
+            </div>
+            <div className="rsvp-guests">
+                <label>Attendees:
+                    <input type="number" name="Total number of Guests" min="0" max="8" onChange={this.handleChange} required />
+                </label>
+            </div>
+            <div className="rsvp-messagebox">
+              <label>
+                Message:<br />
+                <textarea name="message" rows="3" onChange={this.handleChange} />
+              </label>
+            </div>
+            <div className="rsvp-songbox">
+              <label>
+                Song choices:<br />
+                <textarea name="Song choices" rows="2" onChange={this.handleChange} />
+              </label>
+            </div>
+            <div className="rsvp-recaptcha" data-netlify-recaptcha></div>
+            <div className="rsvp-submit">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
           </div>
-          <div className="input-group">
-            <input type="number" name="extras" className="" min="0" max="4" placeholder="Husband/Wife or kids" required />
-            <input type="number" name="invite_code" id="invite_code" className="" min="0" placeholder="Invite code" required />
-            <input name="name" className="" placeholder="Your name" required />
-          </div>
-          <button type="submit">Sign In</button>
-        </form>
-        <div className={`message ${this.state.isError && "error"}`}>
-          {this.state.isSubmitting ? "Submitting..." : this.state.message}
-        </div>
       </div>
     );
   }
