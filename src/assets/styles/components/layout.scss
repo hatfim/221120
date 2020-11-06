@@ -1,0 +1,233 @@
+
+// Layout
+
+// Set border-box on all elements
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+
+html,
+body {
+  background-color: #080808;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.svg-container {
+	display: block;
+	svg {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+}
+
+
+.border {
+  padding: 4px;
+  box-shadow: 0 0 0 2px #40382e inset;
+  position: relative;
+
+  &::before {
+    border: 2px solid #40382e;
+    border-top-color:transparent;
+    border-left-color:transparent;
+    border-radius: 0 0 16px 0;
+    display: block;
+    position: absolute;
+    top: 0; left: 0;
+    width: 16px; height: 16px;
+    content: '';
+    box-sizing:border-box;
+  }
+  &::after {
+    border: 2px solid #40382e;
+    border-top-color:transparent;
+    border-right-color:transparent;
+    border-radius: 0 0 0 16px;
+    display: block;
+    position: absolute;
+    top: 0; right: 0;
+    width: 16px; height: 16px;
+    content: '';
+    box-sizing:border-box;
+  }
+
+  .border__inner {
+    padding: 16px;
+    border: 1px solid #40382e;
+
+    &::before {
+      border: 2px solid #40382e;
+      border-bottom-color:transparent;
+      border-left-color:transparent;
+      border-radius: 0 16px 0 0;
+      display: block;
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 16px; height: 16px;
+      content: '';
+      box-sizing:border-box;
+      z-index: 3;
+    }
+    &::after {
+      border: 2px solid #40382e;
+      border-bottom-color:transparent;
+      border-right-color:transparent;
+      border-radius: 16px 0 0 0;
+      display: block;
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 16px; height: 16px;
+      content: '';
+      box-sizing:border-box;
+      z-index: 2;
+    }
+  }
+
+}
+
+.wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto 80px;
+
+  @media (min-width: 1200px) {
+    padding: 288px 160px 0px 160px;
+  }
+  @media (min-width: 800px) and (max-width: 1199px) {
+    padding: 220px 80px 0px 80px;
+  }
+  @media (max-width: 799px) {
+    padding: 150px 20px 0px 20px;
+  }
+}
+
+.box-wrapper {
+  position: relative;
+
+  .row {
+    position: relative;
+  }
+}
+
+
+@media (min-width: 800px) {
+  .overlap-bottom-120 {
+    margin-bottom: -7.5rem;
+  }
+  .overlap-top-150 {
+    margin-top: -9.375rem;
+  }
+}
+@media (max-width: 799px) {
+  .overlap-bottom-120 {
+    margin-bottom: -52px;
+  }
+  .overlap-top-150 {
+    margin-top: -52px;
+  }
+}
+
+
+
+.container {
+  width: 100%;
+  max-width: 100%;
+
+  @media (max-width: 1449px) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  @media (min-width: 1450px) {
+    padding-left: 160px;
+    padding-right: 160px;
+  }
+
+  @media (max-width: 799px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  @supports (display: grid) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 960px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
+  > .col {
+    flex-basis: 50%;
+
+    @media (max-width: 960px) {
+      flex-basis: 100%;
+    }
+  }
+}
+
+.bg-black {
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  width: 5000px;
+  background: #0f0f0f;
+  top: 150px;
+
+  &.-right {
+    right: 25%;
+  }
+
+  &.-left {
+    left: 25%;
+  }
+}
+
+.bg-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 0;
+  padding-bottom: 75%;
+  z-index: -3;
+
+  @media (min-width: 800px) {
+    margin: 0 -80px;
+  }
+
+  @media (max-width: 799px) {
+    margin: 0 -20px;
+  }
+}
+
+.bg-wrapper__image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  z-index: -1;
+}
+
