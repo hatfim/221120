@@ -7,6 +7,9 @@ import Form from "../components/form"
 import logo from "!!raw-loader!../assets/images/logo.svg"
 import ring from "!!raw-loader!../assets/images/ring.svg";
 import separator from "../assets/images/separator.jpg"
+import image01 from "../assets/images/01.jpg"
+import image02 from "../assets/images/02.jpg"
+import image03 from "../assets/images/03.jpg"
 import mapHotel from "../assets/images/map-hotel.png"
 import mapGereja from "../assets/images/map-gereja.png"
 
@@ -20,11 +23,11 @@ const IndexPage = () => (
             <SVG svg={logo} />
           </a>
         </section>
-        <section className="box-wrapper overlap-bottom-120">
+        <section className="box-wrapper">
           <div className="container">
             <div className="row">
-              <div className="col">
-                <SVG svg={ring} />
+              <div className="col col--image">
+                <img src={image01} />
               </div>
               <div className="col">
                 <div className="">
@@ -51,8 +54,8 @@ const IndexPage = () => (
         <section className="box-wrapper">
           <div className="container">
             <div className="row">
-              <div className="col">
-                <SVG svg={ring} />
+              <div className="col col--image">
+                <img src={image02} />
               </div>
               <div className="col">
                 <p className="label">The Ceremony</p>
@@ -85,8 +88,8 @@ const IndexPage = () => (
                  <img src={mapHotel} />
                  <a class="btn" href="https://www.google.com/maps/place/Hotel+Santika+Premiere+ICE+BSD+City/@-6.2989222,106.6340902,17z/data=!3m1!4b1!4m8!3m7!1s0x2e69fb538fd1864b:0x4f93866d21038550!5m2!4m1!1i2!8m2!3d-6.2989275!4d106.6362789">SHOW DIRECTION</a>
               </div>
-              <div className="col">
-                <SVG svg={ring} />
+              <div className="col col--image">
+                <img src={image03} />
               </div>
                 <a href="#home-block-2" className="js-scroll-down scroll-down">
                 <span className="arrow-down"></span>

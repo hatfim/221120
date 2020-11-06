@@ -3,15 +3,9 @@
   height: 0;
   padding-bottom: 75%;
   background-image: url('../images/hero.jpg');
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: top center;
-
-  // @media (max-width: 960px) {
-  //   padding-bottom: 100vh;
-  //   background-image: url('../images/hero-mobile.jpg');
-  //   background-position: bottom center;
-  // }
 }
 
 .site-logo {
@@ -25,6 +19,9 @@
   z-index: 91;
   width: 120px;
   height: 120px;
+  background-color: #080808;
+  overflow: hidden;
+  border-radius: 50%;
 
   @media (max-width: 1199px) {
     width: 120px;
