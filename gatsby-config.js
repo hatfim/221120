@@ -27,6 +27,21 @@ module.exports = {
         icon: `src/assets/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Quattrocento Sans`,
+            variants: [`400`, `700`]
+          },
+          {
+            family: `Quattrocento`,
+            variants: [`700`]
+          },
+        ],
+      },
+    },
     `gatsby-plugin-sass`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

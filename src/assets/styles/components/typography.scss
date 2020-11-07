@@ -27,6 +27,7 @@ a {
   .heading--large {
     font-size: 3rem;
     line-height: 1;
+    margin:0 0 2.25rem;
   }
 
   .heading--medium {
@@ -53,6 +54,15 @@ a {
       margin-bottom: 0.5rem;
   }
 
+  .label {
+    line-height: 36px;
+    border: 1px solid #AD8745;
+    padding: 0 24px;
+    height: 36px;
+    display: inline-block;
+    margin: 0 0 1.5rem;
+  }
+
   .scroll-down {
     display: inline-block;
     height: 60px;
@@ -70,7 +80,7 @@ a {
       left: 50%;
       height: 42px;
       width: 1px;
-      background: #f3e5b1;
+      background: #AD8745;
       display: block;
       transition: height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
@@ -85,8 +95,8 @@ a {
       padding: 0;
       width: 13px;
       height: 13px;
-      border-top: 1px solid #f3e5b1;
-      border-right: 1px solid #f3e5b1;
+      border-top: 1px solid #AD8745;
+      border-right: 1px solid #AD8745;
       transform: rotate(135deg);
       margin-left: -5px;
     }

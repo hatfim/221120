@@ -14,8 +14,7 @@ import Nav from "./nav.js"
 const Layout = ({ children }) => {
   return (
     <>
-      <Nav />
-      <main className="site-main wrapper">{children}</main>
+     {children}
     </>
   )
 }
