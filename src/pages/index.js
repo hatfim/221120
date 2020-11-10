@@ -67,7 +67,7 @@ const IndexPage = () => (
                 </div>
                 <div className="col">
                   <div className="content">
-                    <p className="label">The Ceremony</p>
+                    <p className="label">Wedding Ceremony</p>
                     <h2 className="heading--large">Gereja Katolik<br />
                         Santa Monica</h2>
                     <p>Jl. Alamanda Sektor 1.2, <br />
@@ -99,7 +99,7 @@ const IndexPage = () => (
               <div className="row">
                 <div className="col">
                   <div className="content -left">
-                    <p className="label">The Reception</p>
+                    <p className="label">Intimate Dinner</p>
                     <h2 className="heading--large">Hotel Santika Premiere ICE BSD City</h2>
                     <p>Indonesia Convention Exhibition,<br />
                       Jalan BSD Grand Boulevard, Pagedangan, <br />

@@ -1,5 +1,6 @@
 import React from "react"
-import { navigate } from "gatsby";
+import axios from 'axios'
+import AddToCalendar from "react-add-to-calendar";
 
 import Layout from "../components/layout"
 import SVG from "../components/svg"
@@ -15,7 +16,12 @@ function encode(data) {
 class RSVPPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      ...this.state,
+      display: 'showForm',
+      isLoading: false,
+      isSubmissionError: false,
+    };
   }
 
   handleChange = e => {
@@ -33,8 +39,89 @@ class RSVPPage extends React.Component {
         ...this.state
       })
     })
-      .then(() => navigate(form.getAttribute("action")))
+      .then(() => {
+        console.log('success')
+        this.setState({
+          isSubmissionError: false,
+          isLoading: false,
+          display: 'showResult',
+        });
+      })
       .catch(error => alert(error));
+  };
+
+  renderComponents = () => {
+    switch(this.state.display) {
+      case "showForm":
+        return (
+          <form className="form-body"
+              name="RSVP"
+              onSubmit={this.handleSubmit}
+            >
+              <div className="rsvp-name form-item">
+                <label className="form-item__label">Your Name(s)</label>
+                <div className="text-input__outer-wrapper">
+                  <div className="text-input__wrapper">
+                    <input type="text" name="name" className="text-input" onChange={this.handleChange} required />
+                  </div>
+                </div>
+              </div>
+              <div className="rsvp-attendance form-item">
+                <div className="form-item__label">Attendance</div>
+                <div className="radio-button-group">
+                  <div className="radio-button__wrapper">
+                    <input id="radio-1" type="radio" name="RSVP Response" className="radio-button" value="Yes" onChange={this.handleChange} required />
+                    <label htmlFor="radio-1" className="radio-button__label">
+                      <span className="radio-button__appearance"></span>
+                      <span>JOYFULLY ACCEPT</span>
+                    </label>
+                  </div>
+                  <div className="radio-button__wrapper">
+                    <input id="radio-2" type="radio" name="RSVP Response" className="radio-button" value="No" onChange={this.handleChange} required />
+                    <label htmlFor="radio-2" className="radio-button__label">
+                      <span className="radio-button__appearance"></span>
+                      <span>REGRETFULLY DECLINE</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="rsvp-messagebox form-item">
+                <label className="form-item__label">Message</label>
+                <div className="text-input__outer-wrapper">
+                  <div className="text-input__wrapper">
+                    <textarea name="message" className="text-area" onChange={this.handleChange} />
+                  </div>
+                </div>
+              </div>
+              <div className="rsvp-name form-item">
+                <label className="form-item__label">Suggest a Song</label>
+                <div className="text-input__outer-wrapper">
+                  <div className="text-input__wrapper">
+                    <input type="text" name="song" className="text-input" onChange={this.handleChange} required />
+                  </div>
+                </div>
+              </div>
+              <div className="rsvp-submit">
+                <button className="btn" type="submit">SEND RSVP</button>
+              </div>
+            </form>
+        );
+      case "showResult":
+        let event = {
+          title: 'Windy & Novrita Intimate Dinner',
+          description: 'Can`t wait to see you on the big day!',
+          location: 'Hotel Santika Premiere ICE BSD',
+          startTime: '2020-11-22T18:00:00+07:00',
+          endTime: '2020-11-22T21:00:00+07:00'
+        };
+
+        return (
+          <div className="rsvp-success">
+            <h2>Hurray! Can't wait to see you on the big day!</h2>
+            <AddToCalendar event={event} />
+          </div>
+        );
+      }
   };
 
   render() {
@@ -53,100 +140,10 @@ class RSVPPage extends React.Component {
                 <h2>SUNDAY, 22.11.20</h2>
               </div>
               <section className="rsvp-form">
-            <div className="container rsvp-body">
-              <form className="form-body"
-                name="RSVP"
-                method="post"
-                action="/thanks/"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
-                onSubmit={this.handleSubmit}
-              >
-                {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-                <input type="hidden" name="form-name" value="contact" />
-                <p hidden>
-                  <label>
-                    Don’t fill this out:{" "}
-                    <input name="bot-field" onChange={this.handleChange} />
-                  </label>
-                </p>
-                <div className="rsvp-name form-item">
-                  <label className="form-item__label">Your Name(s)</label>
-                  <div className="text-input__outer-wrapper">
-                    <div className="text-input__wrapper">
-                      <input type="text" name="name" className="text-input" onChange={this.handleChange} required />
-                    </div>
-                  </div>
+                <div className="container rsvp-body">
+                  { this.renderComponents() }
                 </div>
-                <div className="row">
-                  <div className="col">
-                    <div className="rsvp-email form-item">
-                      <label className="form-item__label">Email Address</label>
-                      <div className="text-input__outer-wrapper">
-                        <div className="text-input__wrapper">
-                          <input type="email" name="email" className="text-input" onChange={this.handleChange} required />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-
-                    <div className="rsvp-phone form-item">
-                      <label className="form-item__label">Phone Number</label>
-                      <div className="text-input__outer-wrapper">
-                        <div className="text-input__wrapper">
-                          <input type="text" name="phone" className="text-input" onChange={this.handleChange} required />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-
-                <div className="rsvp-attendance form-item">
-                  <div className="form-item__label">Attendance</div>
-                  <div className="radio-button-group">
-                    <div className="radio-button__wrapper">
-                      <input id="radio-1" type="radio" name="RSVP Response" className="radio-button" value="Yes" onChange={this.handleChange} required />
-                      <label for="radio-1" className="radio-button__label">
-                        <span className="radio-button__appearance"></span>
-                        <span>JOYFULLY ACCEPT</span>
-                      </label>
-                    </div>
-                    <div className="radio-button__wrapper">
-                      <input id="radio-2" type="radio" name="RSVP Response" className="radio-button" value="No" onChange={this.handleChange} required />
-                      <label for="radio-2" className="radio-button__label">
-                        <span className="radio-button__appearance"></span>
-                        <span>REGRETFULLY DECLINE</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="rsvp-name form-item">
-                  <label className="form-item__label">Suggest a Song</label>
-                  <div className="text-input__outer-wrapper">
-                    <div className="text-input__wrapper">
-                      <input type="text" name="song" className="text-input" onChange={this.handleChange} required />
-                    </div>
-                  </div>
-                </div>
-                <div className="rsvp-messagebox form-item">
-                  <label className="form-item__label">Message</label>
-                  <div className="text-input__outer-wrapper">
-                    <div className="text-input__wrapper">
-                      <textarea name="message" className="text-area" onChange={this.handleChange} />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rsvp-recaptcha" data-netlify-recaptcha></div>
-                <div className="rsvp-submit">
-                  <button className="btn" type="submit">SEND RSVP</button>
-                </div>
-              </form>
-            </div>
-          </section>
+              </section>
             </div>
           </div>
         </main>

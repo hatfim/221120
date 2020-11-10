@@ -317,6 +317,16 @@ body {
 
 
 .rsvp {
+  &.welcome {
+    .container {
+      border-bottom: 0;
+
+      p {
+        letter-spacing: 0;
+      }
+    }
+  }
+
   .container {
     padding-top: 100px;
     padding-bottom: 40px;
@@ -344,6 +354,8 @@ body {
         margin-left: -10%;
         background-color: #AD8745;
       }
+
+
     }
 
     p {
@@ -373,4 +385,26 @@ body {
 
 .rsvp-submit {
   text-align: right;
+}
+
+.rsvp-success {
+  text-align: center;
+}
+
+.react-add-to-calendar__button {
+  @extend .btn;
+}
+
+.react-add-to-calendar__dropdown ul {
+  list-style: none;
+  margin: 36px auto;
+  align-items: center;
+
+  li {
+    padding: 8px;
+  }
+}
+
+.react-add-to-calendar {
+  margin-top: 60px;
 }
