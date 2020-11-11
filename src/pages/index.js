@@ -38,9 +38,8 @@ const IndexPage = () => (
                   <div className="content">
                     <p className="label">The Date</p>
                     <h2 className="heading--large">SUNDAY, NOVEMBER 22 2020</h2>
-                    <p>As many of you may already know, we will be tying the knot soon. And we’d like you to join us to celebrate our love together</p>
-                    <p>If you could make it to our big day, please fill in your details below so we can reserve a great seat for you.n with us. So more than anything we`re simply grateful for your presence </p>
-                    <p><a className="btn" href='/rsvp'>RSVP</a></p>
+                    <p>As you may have already heard, we will be tying the knot on November 22nd, 2020. We are extremely excited to start our new chapter, but unfortunately, the pandemic we are experiencing now impedes us from celebrating with all of you. Nonetheless, nothing will make us happier than to hear from you, friends who have become our family, and to have your blessings and well wishes. Please leave us some lovely words as a mark of a beautiful (and fun!) beginning. </p>
+                    <p><a className="btn" href='/message'>SEND US MESSAGE</a></p>
                   </div>
                 </div>
                 <Link
@@ -92,7 +91,7 @@ const IndexPage = () => (
           </section>
           <div id="05" className="box-wrapper box--rsvp">
             <p>WE'RE SO EXCITED TO CELEBRATE WITH YOU</p>
-            <p><a className="btn" href='/rsvp'>RSVP</a></p>
+            <p><a className="btn" href='/message'>SEND US MESSAGE</a></p>
           </div>
           <section id="06" className="box-wrapper">
             <div className="container">
