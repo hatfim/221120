@@ -150,7 +150,8 @@ class RSVPPage extends React.Component {
               <div className="container">
                 <h1>R.S.V.P</h1>
                 <p>SAVE THE DATE &amp; RSVP</p>
-                <h2>SUNDAY, 22.11.20</h2>
+                <h2>Intimate Wedding Dinner</h2>
+                <p>HOTEL SANTIKA PRIMIERE ICE BSD CITY<br />SKY LOUNGE 15, 15 Fl<br />SUNDAY, NOVEMMBER 22nd 2020</p>
               </div>
               <section className="rsvp-form">
                 <div className="container rsvp-body">
