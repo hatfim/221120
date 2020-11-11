@@ -1,6 +1,5 @@
 import React from "react"
-import axios from 'axios'
-import AddToCalendar from "react-add-to-calendar";
+import AddToCalendar from "react-add-to-calendar"
 
 import Layout from "../components/layout"
 import SVG from "../components/svg"
@@ -17,7 +16,7 @@ class RSVPPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...this.state,
+      formData: {},
       display: 'showForm',
       isLoading: false,
       isSubmissionError: false,
@@ -25,30 +24,44 @@ class RSVPPage extends React.Component {
   }
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    const copyFormData = this.state.formData
+    copyFormData[e.target.name] = e.target.value;
+    this.setState({
+      formData: copyFormData
+    })
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    const form = e.target;
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": form.getAttribute("name"),
-        ...this.state
-      })
-    })
-      .then(() => {
-        console.log('success')
-        this.setState({
-          isSubmissionError: false,
-          isLoading: false,
-          display: 'showResult',
-        });
-      })
-      .catch(error => alert(error));
+    const {name, attendance, message, song} = this.state.formData
+    try {
+        const response = await fetch(
+            "https://v1.nocodeapi.com/hatfim/google_sheets/XNgTKZgLXdiTpmJf?tabId=RSVP",
+            {
+                method: "post",
+                body: JSON.stringify([[name, attendance, message, song]]),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+        const json = await response.json();
+
+        if(json) {
+          console.log("Success:", JSON.stringify(json));
+          this.setState({
+            isSubmissionError: false,
+            isLoading: false,
+            display: 'showResult',
+          });
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+
   };
+
+
 
   renderComponents = () => {
     switch(this.state.display) {
@@ -70,14 +83,14 @@ class RSVPPage extends React.Component {
                 <div className="form-item__label">Attendance</div>
                 <div className="radio-button-group">
                   <div className="radio-button__wrapper">
-                    <input id="radio-1" type="radio" name="RSVP Response" className="radio-button" value="Yes" onChange={this.handleChange} required />
+                    <input id="radio-1" type="radio" name="attendance" className="radio-button" value="Yes" onChange={this.handleChange} required />
                     <label htmlFor="radio-1" className="radio-button__label">
                       <span className="radio-button__appearance"></span>
                       <span>JOYFULLY ACCEPT</span>
                     </label>
                   </div>
                   <div className="radio-button__wrapper">
-                    <input id="radio-2" type="radio" name="RSVP Response" className="radio-button" value="No" onChange={this.handleChange} required />
+                    <input id="radio-2" type="radio" name="attendance" className="radio-button" value="No" onChange={this.handleChange} required />
                     <label htmlFor="radio-2" className="radio-button__label">
                       <span className="radio-button__appearance"></span>
                       <span>REGRETFULLY DECLINE</span>
